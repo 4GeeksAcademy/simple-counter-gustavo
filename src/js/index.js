@@ -9,7 +9,9 @@ import "../styles/index.css";
 import Home from "./component/home.jsx";
 let unidad = 0
 let decimal= 0
-let centenos=0
+let centenos= 0
+let thousands = 0
+let millions = 0
 
 //render your react application
 setInterval(()=>{
@@ -24,6 +26,16 @@ setInterval(()=>{
         centenos++
         decimal=0
     }
+    if(centenos>9 && decimal>9){
+        thousands++
+        centenos=0
+    }
+    if(thousands>9 && centenos>9){
+        millions++
+        thousands=0
+    } 
+
+    // si el decimal (if) es mayor a 9 y (&&) la unidad es mayor a 9
     
-    ReactDOM.render(<Home unidad={unidad} decimal={decimal} centenos={centenos}/>, document.querySelector("#app"));
+    ReactDOM.render(<Home unidad={unidad} decimal={decimal} centenos={centenos} thousands={thousands} millions={millions}/>, document.querySelector("#app"));
 },1000)
