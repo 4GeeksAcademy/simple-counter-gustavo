@@ -7,6 +7,23 @@ import "../styles/index.css";
 
 //import your own components
 import Home from "./component/home.jsx";
+let unidad = 0
+let decimal= 0
+let centenos=0
 
 //render your react application
-ReactDOM.render(<Home />, document.querySelector("#app"));
+setInterval(()=>{
+    unidad++
+
+    if(unidad>9){
+        decimal++
+        // decimal es igual a decimal + 1 
+        unidad=0
+        }
+    if(decimal>9 && unidad>9){
+        centenos++
+        decimal=0
+    }
+    
+    ReactDOM.render(<Home unidad={unidad} decimal={decimal} centenos={centenos}/>, document.querySelector("#app"));
+},1000)
